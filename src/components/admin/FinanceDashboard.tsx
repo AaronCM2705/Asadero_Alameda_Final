@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { supabase } from '../../lib/supabase';
 import { 
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
@@ -10,17 +10,41 @@ import { jsPDF } from 'jspdf';
 import * as XLSX from 'xlsx';
 import type { Order } from '../../types';
 
+interface ChartDataItem {
+  date: string;
+  ganancias: number;
+}
+
 export const FinanceDashboard = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [stats, setStats] = useState({ totalSales: 0, totalOrders: 0, avgTicket: 0 });
-  const [chartData, setChartData] = useState<any[]>([]);
+  const [chartData, setChartData] = useState<ChartDataItem[]>([]);
   const dashboardRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    fetchOrders();
+  const calculateStats = useCallback((data: Order[]) => {
+    const total = data.reduce((sum, order) => sum + (Number(order.total) || 0), 0);
+    setStats({
+      totalSales: total,
+      totalOrders: data.length,
+      avgTicket: data.length > 0 ? total / data.length : 0
+    });
   }, []);
 
-  const fetchOrders = async () => {
+  const processChartData = useCallback((data: Order[]) => {
+    const grouped = data.reduce((acc: Record<string, number>, order) => {
+      const date = new Date(order.created_at).toLocaleDateString();
+      acc[date] = (acc[date] || 0) + (Number(order.total) || 0);
+      return acc;
+    }, {});
+
+    const formatted: ChartDataItem[] = Object.keys(grouped).map(date => ({
+      date,
+      ganancias: grouped[date]
+    }));
+    setChartData(formatted);
+  }, []);
+
+  const fetchOrders = useCallback(async () => {
     const { data, error } = await supabase
       .from('orders')
       .select('*')
@@ -31,31 +55,11 @@ export const FinanceDashboard = () => {
       calculateStats(data);
       processChartData(data);
     }
-  };
+  }, [calculateStats, processChartData]);
 
-  const calculateStats = (data: Order[]) => {
-    const total = data.reduce((sum, order) => sum + (Number(order.total) || 0), 0);
-    setStats({
-      totalSales: total,
-      totalOrders: data.length,
-      avgTicket: data.length > 0 ? total / data.length : 0
-    });
-  };
-
-  const processChartData = (data: Order[]) => {
-    // Agrupar por fecha
-    const grouped = data.reduce((acc: any, order) => {
-      const date = new Date(order.created_at).toLocaleDateString();
-      acc[date] = (acc[date] || 0) + (Number(order.total) || 0);
-      return acc;
-    }, {});
-
-    const formatted = Object.keys(grouped).map(date => ({
-      date,
-      ganancias: grouped[date]
-    }));
-    setChartData(formatted);
-  };
+  useEffect(() => {
+    fetchOrders();
+  }, [fetchOrders]);
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(orders);

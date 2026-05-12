@@ -1,4 +1,4 @@
-import { useState, useEffect, type FormEvent } from 'react';
+import { useState, useEffect, useCallback, type FormEvent } from 'react';
 import { supabase } from '../../lib/supabase';
 import { Megaphone, Plus, Trash2, Power, PowerOff } from 'lucide-react';
 import type { Announcement } from '../../types';
@@ -8,18 +8,18 @@ export const AnnouncementManager = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [formData, setFormData] = useState({ title: '', message: '' });
 
-  useEffect(() => {
-    fetchAnnouncements();
-  }, []);
-
-  const fetchAnnouncements = async () => {
+  const fetchAnnouncements = useCallback(async () => {
     const { data, error } = await supabase
       .from('announcements')
       .select('*')
       .order('created_at', { ascending: false });
     
     if (!error && data) setAnnouncements(data);
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchAnnouncements();
+  }, [fetchAnnouncements]);
 
   const handleAdd = async (e: FormEvent) => {
     e.preventDefault();
