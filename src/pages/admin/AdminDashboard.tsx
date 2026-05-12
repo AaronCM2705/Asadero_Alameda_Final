@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAdminAuth } from '../../hooks/useAdminAuth';
 import { useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Utensils, Megaphone, LogOut, Menu as MenuIcon, X, Wallet } from 'lucide-react';
+import { Utensils, Megaphone, LogOut, Menu as MenuIcon, X, Wallet } from 'lucide-react';
 import { CategoryManager } from '../../components/admin/CategoryManager';
 import { ProductManager } from '../../components/admin/ProductManager';
 import { FinanceDashboard } from '../../components/admin/FinanceDashboard';

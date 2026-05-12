@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../../lib/supabase';
 import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
-  LineChart, Line, AreaChart, Area 
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
+  AreaChart, Area 
 } from 'recharts';
-import { Download, FileText, FileSpreadsheet, Image as ImageIcon, TrendingUp, ShoppingCart, DollarSign } from 'lucide-react';
+import { FileText, FileSpreadsheet, Image as ImageIcon, TrendingUp, ShoppingCart, DollarSign } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import * as XLSX from 'xlsx';
@@ -14,7 +14,6 @@ export const FinanceDashboard = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [stats, setStats] = useState({ totalSales: 0, totalOrders: 0, avgTicket: 0 });
   const [chartData, setChartData] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const dashboardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,7 +31,6 @@ export const FinanceDashboard = () => {
       calculateStats(data);
       processChartData(data);
     }
-    setIsLoading(false);
   };
 
   const calculateStats = (data: Order[]) => {

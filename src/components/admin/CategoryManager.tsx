@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Plus, Trash2, Save, FolderPlus } from 'lucide-react';
+import { Plus, Trash2, FolderPlus } from 'lucide-react';
 import type { Category } from '../../types';
 
 export const CategoryManager = () => {
