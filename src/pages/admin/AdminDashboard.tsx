@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Utensils, Megaphone, LogOut, Menu as MenuIcon, X, Wallet } from 'lucide-react';
 import { CategoryManager } from '../../components/admin/CategoryManager';
 import { ProductManager } from '../../components/admin/ProductManager';
+import { FinanceDashboard } from '../../components/admin/FinanceDashboard';
 
 export const AdminDashboard = () => {
   const { logout } = useAdminAuth();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'finance' | 'menu' | 'announcements'>('menu');
+  const [activeTab, setActiveTab] = useState<'finance' | 'menu' | 'announcements'>('finance');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleLogout = () => {
@@ -85,6 +86,8 @@ export const AdminDashboard = () => {
           </h2>
         </header>
 
+        {activeTab === 'finance' && <FinanceDashboard />}
+
         {activeTab === 'menu' && (
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-12">
             <div className="xl:col-span-1 border-r border-white/5 pr-0 xl:pr-12">
@@ -93,13 +96,6 @@ export const AdminDashboard = () => {
             <div className="xl:col-span-2">
               <ProductManager />
             </div>
-          </div>
-        )}
-
-        {activeTab === 'finance' && (
-          <div className="glass-panel p-20 rounded-3xl text-center border-dashed border-primary/20">
-            <Wallet className="mx-auto text-primary/20 mb-6" size={64} />
-            <p className="text-on-surface/30 uppercase tracking-[0.3em] text-xs">Módulo de finanzas en desarrollo...</p>
           </div>
         )}
 
