@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Menu, X, LayoutDashboard } from 'lucide-react';
+import { ShoppingBag, Menu, X, LayoutDashboard, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface NavbarProps {
@@ -27,14 +27,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount = 0 }) =>
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           <Link to="/" className="text-primary font-bold font-body text-xs uppercase tracking-[0.2em] hover:opacity-70 transition-opacity">Inicio</Link>
-          <Link to="/menu" className="text-on-surface/60 font-bold font-body text-xs uppercase tracking-[0.2em] hover:text-primary transition-colors">Carta</Link>
+          <Link to="/menu" className="text-on-surface/60 font-bold font-body text-xs uppercase tracking-[0.2em] hover:text-primary transition-colors">La Carta</Link>
           <Link to="/login-admin" className="text-on-surface/60 font-bold font-body text-xs uppercase tracking-[0.2em] hover:text-primary transition-colors flex items-center gap-2">
             <LayoutDashboard size={14} />
             Admin
           </Link>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 md:gap-4">
+          <button 
+            className="h-10 w-10 flex items-center justify-center text-on-surface/60 hover:text-primary transition-colors"
+            title="Mi Cuenta"
+          >
+            <User size={20} />
+          </button>
+          
           <button 
             onClick={onCartClick} 
             className="h-12 w-12 flex items-center justify-center text-primary border border-primary/20 rounded-full hover:bg-primary/10 transition-all relative"

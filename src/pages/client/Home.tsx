@@ -3,6 +3,7 @@ import { Navbar } from '../../components/common/Navbar';
 import { Footer } from '../../components/common/Footer';
 import { OrderTicketModal } from '../../components/client/OrderTicketModal';
 import { ChevronRight, Flame } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import type { Order } from '../../types';
 
 export const ClientHome = () => {
@@ -51,9 +52,12 @@ export const ClientHome = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button className="px-10 py-5 bg-primary text-black font-black uppercase tracking-[0.3em] text-xs flex items-center gap-3 hover:bg-yellow-400 transition-all hover:scale-105 shadow-2xl shadow-primary/20">
+            <Link 
+              to="/menu"
+              className="px-10 py-5 bg-primary text-black font-black uppercase tracking-[0.3em] text-xs flex items-center gap-3 hover:bg-yellow-400 transition-all hover:scale-105 shadow-2xl shadow-primary/20"
+            >
               Ver La Carta <ChevronRight size={16} />
-            </button>
+            </Link>
             
             <button 
               onClick={() => setIsTicketOpen(true)}
@@ -62,12 +66,6 @@ export const ClientHome = () => {
               Probar Demo de Pedido
             </button>
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
-          <span className="text-[8px] uppercase tracking-[0.5em]">Scroll</span>
-          <div className="w-[1px] h-12 bg-primary"></div>
         </div>
       </section>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ClientHome } from './pages/client/Home';
+import { Menu } from './pages/client/Menu';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { LoginAdmin } from './pages/admin/LoginAdmin';
 import { useAdminAuth } from './hooks/useAdminAuth';
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         {/* Rutas Públicas (Cliente) */}
         <Route path="/" element={<ClientHome />} />
+        <Route path="/menu" element={<Menu />} />
         
         {/* Ruta Oculta de Login */}
         <Route path="/login-admin" element={<LoginAdmin />} />
