@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Be+Vietnam+Pro:wght@100;300;400;600;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #D4AF37;
+    --color-background: #0A0A0A;
+    --color-surface: #121212;
+    --color-on-surface: #E5E5E5;
+  }
+
+  body {
+    @apply bg-[#0A0A0A] text-[#E5E5E5] font-body antialiased;
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .text-fluid-h1 {
+    font-size: clamp(2.5rem, 5vw + 1rem, 5rem);
+    line-height: 1.1;
+  }
+  .text-fluid-h2 {
+    font-size: clamp(1.8rem, 3vw + 0.5rem, 3.5rem);
+    line-height: 1.2;
+  }
+  
+  .glass-panel {
+    @apply bg-[#121212]/80 backdrop-blur-md border border-white/5;
+  }
+  
+  .gold-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AA8C2C] via-[#D4AF37] to-[#F3D576];
+  }
+
+  .gold-border {
+    @apply border-[#D4AF37]/30;
+  }
+}
+
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.3s ease-out forwards;
+}
+
+/* Custom Scrollbar Premium */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background-color: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #333333;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #D4AF37;
+}
