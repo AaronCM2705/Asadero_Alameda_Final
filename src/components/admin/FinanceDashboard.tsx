@@ -45,21 +45,25 @@ export const FinanceDashboard = () => {
   }, []);
 
   const fetchOrders = useCallback(async () => {
-    const { data, error } = await supabase
+    return await supabase
       .from('orders')
       .select('*')
       .order('created_at', { ascending: true });
-
-    if (!error && data) {
-      setOrders(data);
-      calculateStats(data);
-      processChartData(data);
-    }
-  }, [calculateStats, processChartData]);
+  }, []);
 
   useEffect(() => {
-    fetchOrders();
-  }, [fetchOrders]);
+    let isMounted = true;
+
+    fetchOrders().then(({ data, error }) => {
+      if (isMounted && !error && data) {
+        setOrders(data);
+        calculateStats(data);
+        processChartData(data);
+      }
+    });
+
+    return () => { isMounted = false; };
+  }, [fetchOrders, calculateStats, processChartData]);
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(orders);

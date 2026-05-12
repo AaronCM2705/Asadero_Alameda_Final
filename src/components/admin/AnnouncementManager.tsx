@@ -9,16 +9,27 @@ export const AnnouncementManager = () => {
   const [formData, setFormData] = useState({ title: '', message: '' });
 
   const fetchAnnouncements = useCallback(async () => {
-    const { data, error } = await supabase
+    return await supabase
       .from('announcements')
       .select('*')
       .order('created_at', { ascending: false });
-    
-    if (!error && data) setAnnouncements(data);
   }, []);
 
+  const reloadAnnouncements = useCallback(async () => {
+    const { data, error } = await fetchAnnouncements();
+    if (!error && data) setAnnouncements(data);
+  }, [fetchAnnouncements]);
+
   useEffect(() => {
-    fetchAnnouncements();
+    let isMounted = true;
+    
+    fetchAnnouncements().then(({ data, error }) => {
+      if (isMounted && !error && data) {
+        setAnnouncements(data);
+      }
+    });
+
+    return () => { isMounted = false; };
   }, [fetchAnnouncements]);
 
   const handleAdd = async (e: FormEvent) => {
@@ -30,7 +41,7 @@ export const AnnouncementManager = () => {
     if (!error) {
       setFormData({ title: '', message: '' });
       setIsAdding(false);
-      fetchAnnouncements();
+      reloadAnnouncements();
     }
   };
 
@@ -44,13 +55,13 @@ export const AnnouncementManager = () => {
       .update({ is_active: !currentStatus })
       .eq('id', id);
     
-    if (!error) fetchAnnouncements();
+    if (!error) reloadAnnouncements();
   };
 
   const handleDelete = async (id: string) => {
     if (!confirm('¿Borrar este anuncio?')) return;
     const { error } = await supabase.from('announcements').delete().eq('id', id);
-    if (!error) fetchAnnouncements();
+    if (!error) reloadAnnouncements();
   };
 
   return (
