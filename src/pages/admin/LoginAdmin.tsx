@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '../../hooks/useAdminAuth';
 import { Lock, ShieldAlert } from 'lucide-react';
@@ -9,7 +9,7 @@ export const LoginAdmin = () => {
   const navigate = useNavigate();
   const { login } = useAdminAuth();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     const success = login(password);
     if (success) {

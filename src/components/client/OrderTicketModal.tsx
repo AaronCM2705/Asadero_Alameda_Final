@@ -1,4 +1,4 @@
-import React from 'react';
+import { type FC } from 'react';
 import { MapPin, Clock, AlertTriangle, CheckCircle, X } from 'lucide-react';
 import type { Order } from '../../types';
 
@@ -8,7 +8,7 @@ interface OrderTicketModalProps {
   order: Order | null;
 }
 
-export const OrderTicketModal: React.FC<OrderTicketModalProps> = ({ isOpen, onClose, order }) => {
+export const OrderTicketModal: FC<OrderTicketModalProps> = ({ isOpen, onClose, order }) => {
   if (!isOpen || !order) return null;
 
   // Enlace a Google Maps (Ejemplo de coordenadas/dirección)
