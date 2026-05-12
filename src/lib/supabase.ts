@@ -1,11 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Usamos variables de entorno para no exponer las claves
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://tu-proyecto.supabase.co';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'tu-anon-key';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+if (!supabaseUrl || !supabaseKey) {
+  console.warn('⚠️ Supabase URL o Anon Key no encontradas en .env');
+}
 
-export const isSupabaseConfigured = 
-  supabaseUrl !== 'https://tu-proyecto.supabase.co' && 
-  supabaseKey !== 'tu-anon-key';
+export const supabase = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co', 
+  supabaseKey || 'placeholder'
+);
+
+export const isSupabaseConfigured = !!supabaseUrl && !!supabaseKey;
