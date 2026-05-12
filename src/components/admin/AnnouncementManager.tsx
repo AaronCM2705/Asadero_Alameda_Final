@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { supabase } from '../../lib/supabase';
 import { Megaphone, Plus, Trash2, Power, PowerOff } from 'lucide-react';
 import type { Announcement } from '../../types';
@@ -21,7 +21,7 @@ export const AnnouncementManager = () => {
     if (!error && data) setAnnouncements(data);
   };
 
-  const handleAdd = async (e: React.FormEvent) => {
+  const handleAdd = async (e: FormEvent) => {
     e.preventDefault();
     const { error } = await supabase
       .from('announcements')

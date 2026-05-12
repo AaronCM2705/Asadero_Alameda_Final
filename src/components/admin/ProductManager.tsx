@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { supabase } from '../../lib/supabase';
 import { Plus, Trash2, Utensils, Package, Image as ImageIcon } from 'lucide-react';
 import type { Product, Category } from '../../types';
@@ -33,7 +33,7 @@ export const ProductManager = () => {
     setIsLoading(false);
   };
 
-  const handleAddProduct = async (e: React.FormEvent) => {
+  const handleAddProduct = async (e: FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.category_id) return alert('Nombre y Categoría son obligatorios');
 

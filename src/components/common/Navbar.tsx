@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, type FC } from 'react';
 import { ShoppingBag, Menu, X, LayoutDashboard, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ interface NavbarProps {
   cartCount?: number;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount = 0 }) => {
+export const Navbar: FC<NavbarProps> = ({ onCartClick, cartCount = 0 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
