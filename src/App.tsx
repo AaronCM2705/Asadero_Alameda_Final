@@ -5,6 +5,7 @@ import { Menu } from './pages/client/Menu';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { LoginAdmin } from './pages/admin/LoginAdmin';
 import { useAdminAuth } from './hooks/useAdminAuth';
+import { AnnouncementPopup } from './components/client/AnnouncementPopup';
 
 // Componente para proteger las rutas de la jefa
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -19,6 +20,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 function App() {
   return (
     <Router>
+      <AnnouncementPopup />
       <Routes>
         {/* Rutas Públicas (Cliente) */}
         <Route path="/" element={<ClientHome />} />

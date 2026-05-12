@@ -5,6 +5,7 @@ import { Utensils, Megaphone, LogOut, Menu as MenuIcon, X, Wallet } from 'lucide
 import { CategoryManager } from '../../components/admin/CategoryManager';
 import { ProductManager } from '../../components/admin/ProductManager';
 import { FinanceDashboard } from '../../components/admin/FinanceDashboard';
+import { AnnouncementManager } from '../../components/admin/AnnouncementManager';
 
 export const AdminDashboard = () => {
   const { logout } = useAdminAuth();
@@ -99,12 +100,7 @@ export const AdminDashboard = () => {
           </div>
         )}
 
-        {activeTab === 'announcements' && (
-          <div className="glass-panel p-20 rounded-3xl text-center border-dashed border-primary/20">
-            <Megaphone className="mx-auto text-primary/20 mb-6" size={64} />
-            <p className="text-on-surface/30 uppercase tracking-[0.3em] text-xs">Módulo de anuncios en desarrollo...</p>
-          </div>
-        )}
+        {activeTab === 'announcements' && <AnnouncementManager />}
       </main>
     </div>
   );
