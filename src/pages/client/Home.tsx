@@ -22,7 +22,7 @@ export const ClientHome = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col font-body text-on-surface">
-      <Navbar onCartClick={() => setIsTicketOpen(true)} cartCount={0} />
+      <Navbar />
 
       {/* Hero Section Cinematográfica P1 Style */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">

@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // En un futuro, esto comprobará el token de Supabase.
 // Por ahora, simulamos un logueo simple guardado en el navegador.
 export const useAdminAuth = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return localStorage.getItem('asadero_admin_auth') === 'true';
+  });
+  const isLoading = false;
 
-  useEffect(() => {
-    const authStatus = localStorage.getItem('asadero_admin_auth');
-    if (authStatus === 'true') {
-      setIsAuthenticated(true);
-    }
-    setIsLoading(false);
-  }, []);
+
 
   const login = (password: string) => {
     // Contraseña maestra temporal para la jefa (esto se cambiará en Supabase luego)

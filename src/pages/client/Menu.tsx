@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Navbar } from '../../components/common/Navbar';
 import { Footer } from '../../components/common/Footer';
-import { Search, Utensils, Flame } from 'lucide-react';
+import { Search, Utensils, Flame, Check } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { useCart } from '../../hooks/useCart';
 import type { Product, Category } from '../../types';
 
 export const Menu = () => {
@@ -11,20 +12,45 @@ export const Menu = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const { addToCart } = useCart();
+  const [addedId, setAddedId] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchData();
+  const fetchData = useCallback(async () => {
+    try {
+      const [catRes, prodRes] = await Promise.all([
+        supabase.from('categories').select('*').order('sort_order', { ascending: true }),
+        supabase.from('products').select('*').eq('is_available', true).order('created_at', { ascending: false })
+      ]);
+
+      if (catRes.error) throw catRes.error;
+      if (prodRes.error) throw prodRes.error;
+
+      if (catRes.data) setCategories(catRes.data);
+      if (prodRes.data) setProducts(prodRes.data);
+    } catch (err) {
+      console.error("Error cargando el menú:", err);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const fetchData = async () => {
-    const [catRes, prodRes] = await Promise.all([
-      supabase.from('categories').select('*').order('sort_order', { ascending: true }),
-      supabase.from('products').select('*').eq('is_available', true).order('created_at', { ascending: false })
-    ]);
+  useEffect(() => {
+    const load = async () => {
+      await fetchData();
+    };
+    load();
+  }, [fetchData]);
 
-    if (catRes.data) setCategories(catRes.data);
-    if (prodRes.data) setProducts(prodRes.data);
-    setLoading(false);
+  const handleAddToCart = (product: Product) => {
+    addToCart({
+      product_id: product.id,
+      name: product.name,
+      price: product.base_price,
+      quantity: 1
+    });
+    
+    setAddedId(product.id);
+    setTimeout(() => setAddedId(null), 2000);
   };
 
   const filteredProducts = products.filter(p => {
@@ -35,7 +61,7 @@ export const Menu = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col font-body text-on-surface">
-      <Navbar cartCount={0} />
+      <Navbar />
 
       {/* Header de la Carta */}
       <header className="pt-32 pb-16 px-6 text-center bg-gradient-to-b from-surface to-background relative overflow-hidden">
@@ -109,7 +135,11 @@ export const Menu = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {filteredProducts.map(product => (
-              <div key={product.id} className="group cursor-pointer">
+              <div 
+                key={product.id} 
+                className="group cursor-pointer"
+                onClick={() => handleAddToCart(product)}
+              >
                 <div className="aspect-[4/3] overflow-hidden rounded-3xl mb-6 relative shadow-2xl">
                   {product.image_url ? (
                     <img 
@@ -123,7 +153,7 @@ export const Menu = () => {
                     </div>
                   )}
                   <div className="absolute bottom-6 right-6 bg-black/80 backdrop-blur-md px-4 py-2 rounded-xl border border-primary/20">
-                    <span className="text-primary font-black text-sm tracking-widest">{product.base_price}€</span>
+                    <span className="text-primary font-black text-sm tracking-widest">{Number(product.base_price).toFixed(2)}€</span>
                   </div>
                 </div>
                 
@@ -133,9 +163,15 @@ export const Menu = () => {
                 <p className="text-xs text-on-surface/40 uppercase tracking-widest leading-loose line-clamp-2">
                   {product.description}
                 </p>
-                <div className="mt-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="mt-6 flex items-center gap-2">
                   <div className="h-[1px] flex-grow bg-primary/20"></div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Añadir al pedido</span>
+                  <span className={`text-[10px] font-black uppercase tracking-[0.3em] transition-colors ${addedId === product.id ? 'text-green-500' : 'text-primary'}`}>
+                    {addedId === product.id ? (
+                      <span className="flex items-center gap-2"><Check size={12} /> Añadido</span>
+                    ) : (
+                      'Añadir al pedido'
+                    )}
+                  </span>
                 </div>
               </div>
             ))}

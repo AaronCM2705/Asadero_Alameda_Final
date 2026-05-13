@@ -1,4 +1,4 @@
-import { useState, useEffect, type FormEvent } from 'react';
+import { useState, useEffect, useCallback, type FormEvent } from 'react';
 import { supabase } from '../../lib/supabase';
 import { Plus, Trash2, Utensils, Package, Image as ImageIcon } from 'lucide-react';
 import type { Product, Category } from '../../types';
@@ -18,20 +18,28 @@ export const ProductManager = () => {
     image_url: ''
   });
 
-  useEffect(() => {
-    fetchData();
+  const fetchData = useCallback(async () => {
+    try {
+      const [prodRes, catRes] = await Promise.all([
+        supabase.from('products').select('*').order('created_at', { ascending: false }),
+        supabase.from('categories').select('*').order('sort_order', { ascending: true })
+      ]);
+
+      if (prodRes.data) setProducts(prodRes.data);
+      if (catRes.data) setCategories(catRes.data);
+    } catch (err) {
+      console.error("Error fetching admin data:", err);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
-  const fetchData = async () => {
-    const [prodRes, catRes] = await Promise.all([
-      supabase.from('products').select('*').order('created_at', { ascending: false }),
-      supabase.from('categories').select('*').order('sort_order', { ascending: true })
-    ]);
-
-    if (prodRes.data) setProducts(prodRes.data);
-    if (catRes.data) setCategories(catRes.data);
-    setIsLoading(false);
-  };
+  useEffect(() => {
+    const load = async () => {
+      await fetchData();
+    };
+    load();
+  }, [fetchData]);
 
   const handleAddProduct = async (e: FormEvent) => {
     e.preventDefault();
@@ -152,7 +160,7 @@ export const ProductManager = () => {
                   <div className="w-full h-full flex items-center justify-center text-on-surface/10"><ImageIcon size={32} /></div>
                 )}
                 <div className="absolute top-3 right-3 bg-primary text-black px-2 py-1 rounded-lg font-black text-[10px]">
-                  {product.base_price}€
+                  {Number(product.base_price).toFixed(2)}€
                 </div>
               </div>
               <div className="p-5">

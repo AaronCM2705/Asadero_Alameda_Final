@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useAdminAuth } from '../../hooks/useAdminAuth';
 import { useNavigate } from 'react-router-dom';
-import { Utensils, Megaphone, LogOut, Menu as MenuIcon, X, Wallet } from 'lucide-react';
+import { Utensils, Megaphone, LogOut, Menu as MenuIcon, X, Wallet, ShoppingBag } from 'lucide-react';
 import { CategoryManager } from '../../components/admin/CategoryManager';
 import { ProductManager } from '../../components/admin/ProductManager';
 import { FinanceDashboard } from '../../components/admin/FinanceDashboard';
 import { AnnouncementManager } from '../../components/admin/AnnouncementManager';
+import { OrderManager } from '../../components/admin/OrderManager';
 
 export const AdminDashboard = () => {
   const { logout } = useAdminAuth();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'finance' | 'menu' | 'announcements'>('finance');
+  const [activeTab, setActiveTab] = useState<'orders' | 'finance' | 'menu' | 'announcements'>('orders');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleLogout = () => {
@@ -44,6 +45,13 @@ export const AdminDashboard = () => {
           </div>
 
           <nav className="flex-grow space-y-2">
+            <button 
+              onClick={() => { setActiveTab('orders'); setIsSidebarOpen(false); }}
+              className={`w-full flex items-center gap-4 px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all
+              ${activeTab === 'orders' ? 'bg-primary text-black' : 'text-on-surface/40 hover:bg-white/5 hover:text-on-surface'}`}
+            >
+              <ShoppingBag size={18} /> Pedidos
+            </button>
             <button 
               onClick={() => { setActiveTab('finance'); setIsSidebarOpen(false); }}
               className={`w-full flex items-center gap-4 px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all
@@ -81,12 +89,14 @@ export const AdminDashboard = () => {
         <header className="mb-12">
           <p className="text-[10px] uppercase tracking-[0.5em] text-primary/60 font-black mb-2">Panel de Control</p>
           <h2 className="text-4xl font-headline italic text-on-surface">
+            {activeTab === 'orders' && 'Gestión de Pedidos'}
             {activeTab === 'finance' && 'Resumen Financiero'}
             {activeTab === 'menu' && 'Gestor de la Carta'}
             {activeTab === 'announcements' && 'Tablón de Anuncios'}
           </h2>
         </header>
 
+        {activeTab === 'orders' && <OrderManager />}
         {activeTab === 'finance' && <FinanceDashboard />}
 
         {activeTab === 'menu' && (

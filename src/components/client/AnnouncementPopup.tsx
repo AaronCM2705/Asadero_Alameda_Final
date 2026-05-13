@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../../lib/supabase';
 import { X, Megaphone, Bell } from 'lucide-react';
 import type { Announcement } from '../../types';
@@ -7,23 +7,30 @@ export const AnnouncementPopup = () => {
   const [announcement, setAnnouncement] = useState<Announcement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    fetchActiveAnnouncement();
+  const fetchActiveAnnouncement = useCallback(async () => {
+    try {
+      const { data, error } = await supabase
+        .from('announcements')
+        .select('*')
+        .eq('is_active', true)
+        .maybeSingle();
+      
+      if (error) throw error;
+      if (data) {
+        setAnnouncement(data);
+        setTimeout(() => setIsVisible(true), 1500);
+      }
+    } catch (err) {
+      console.error("Error fetching announcement:", err);
+    }
   }, []);
 
-  const fetchActiveAnnouncement = async () => {
-    const { data, error } = await supabase
-      .from('announcements')
-      .select('*')
-      .eq('is_active', true)
-      .maybeSingle();
-    
-    if (!error && data) {
-      setAnnouncement(data);
-      // Mostrar después de un pequeño delay para impacto visual
-      setTimeout(() => setIsVisible(true), 1500);
-    }
-  };
+  useEffect(() => {
+    const load = async () => {
+      await fetchActiveAnnouncement();
+    };
+    load();
+  }, [fetchActiveAnnouncement]);
 
   if (!announcement || !isVisible) return null;
 

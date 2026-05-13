@@ -6,6 +6,7 @@ import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { LoginAdmin } from './pages/admin/LoginAdmin';
 import { useAdminAuth } from './hooks/useAdminAuth';
 import { AnnouncementPopup } from './components/client/AnnouncementPopup';
+import { CartProvider } from './context/CartContext';
 
 // Componente para proteger las rutas de la jefa
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
@@ -19,30 +20,32 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 
 function App() {
   return (
-    <Router>
-      <AnnouncementPopup />
-      <Routes>
-        {/* Rutas Públicas (Cliente) */}
-        <Route path="/" element={<ClientHome />} />
-        <Route path="/menu" element={<Menu />} />
-        
-        {/* Ruta Oculta de Login */}
-        <Route path="/login-admin" element={<LoginAdmin />} />
-        
-        {/* Rutas Privadas (Panel de la Jefa) */}
-        <Route 
-          path="/admin" 
-          element={
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        
-        {/* Si escriben algo raro, los mandamos al inicio */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+        <AnnouncementPopup />
+        <Routes>
+          {/* Rutas Públicas (Cliente) */}
+          <Route path="/" element={<ClientHome />} />
+          <Route path="/menu" element={<Menu />} />
+          
+          {/* Ruta Oculta de Login */}
+          <Route path="/login-admin" element={<LoginAdmin />} />
+          
+          {/* Rutas Privadas (Panel de la Jefa) */}
+          <Route 
+            path="/admin" 
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } 
+          />
+          
+          {/* Si escriben algo raro, los mandamos al inicio */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
 }
 
