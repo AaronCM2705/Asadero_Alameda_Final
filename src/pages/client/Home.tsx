@@ -1,6 +1,6 @@
 import { Navbar } from '../../components/common/Navbar';
 import { Footer } from '../../components/common/Footer';
-import { ChevronRight, Flame, MapPin, ArrowRight, Clock, Phone } from 'lucide-react';
+import { ChevronRight, Flame, MapPin, Clock, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const ClientHome = () => {
