@@ -48,28 +48,28 @@ export const AdminDashboard = () => {
             <button 
               onClick={() => { setActiveTab('orders'); setIsSidebarOpen(false); }}
               className={`w-full flex items-center gap-4 px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all
-              ${activeTab === 'orders' ? 'bg-primary text-black' : 'text-on-surface/40 hover:bg-white/5 hover:text-on-surface'}`}
+              ${activeTab === 'orders' ? 'bg-primary text-black' : 'text-on-surface/70 hover:bg-white/5 hover:text-on-surface'}`}
             >
               <ShoppingBag size={18} /> Pedidos
             </button>
             <button 
               onClick={() => { setActiveTab('finance'); setIsSidebarOpen(false); }}
               className={`w-full flex items-center gap-4 px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all
-              ${activeTab === 'finance' ? 'bg-primary text-black' : 'text-on-surface/40 hover:bg-white/5 hover:text-on-surface'}`}
+              ${activeTab === 'finance' ? 'bg-primary text-black' : 'text-on-surface/70 hover:bg-white/5 hover:text-on-surface'}`}
             >
               <Wallet size={18} /> Finanzas
             </button>
             <button 
               onClick={() => { setActiveTab('menu'); setIsSidebarOpen(false); }}
               className={`w-full flex items-center gap-4 px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all
-              ${activeTab === 'menu' ? 'bg-primary text-black' : 'text-on-surface/40 hover:bg-white/5 hover:text-on-surface'}`}
+              ${activeTab === 'menu' ? 'bg-primary text-black' : 'text-on-surface/70 hover:bg-white/5 hover:text-on-surface'}`}
             >
               <Utensils size={18} /> Gestor Menú
             </button>
             <button 
               onClick={() => { setActiveTab('announcements'); setIsSidebarOpen(false); }}
               className={`w-full flex items-center gap-4 px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all
-              ${activeTab === 'announcements' ? 'bg-primary text-black' : 'text-on-surface/40 hover:bg-white/5 hover:text-on-surface'}`}
+              ${activeTab === 'announcements' ? 'bg-primary text-black' : 'text-on-surface/70 hover:bg-white/5 hover:text-on-surface'}`}
             >
               <Megaphone size={18} /> Anuncios
             </button>
@@ -77,7 +77,7 @@ export const AdminDashboard = () => {
 
           <button 
             onClick={handleLogout}
-            className="flex items-center gap-4 px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest text-red-500/60 hover:bg-red-500/10 transition-all mt-auto"
+            className="flex items-center gap-4 px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest text-red-500 hover:bg-red-500/10 transition-all mt-auto"
           >
             <LogOut size={18} /> Salir
           </button>

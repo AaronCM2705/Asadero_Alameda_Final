@@ -75,7 +75,7 @@ export const OrderManager = () => {
             key={s}
             onClick={() => setFilter(s)}
             className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border
-              ${filter === s ? 'bg-primary text-black border-primary' : 'bg-surface text-on-surface/40 border-white/5 hover:border-primary/30'}`}
+              ${filter === s ? 'bg-primary text-black border-primary' : 'bg-surface text-on-surface/80 border-white/5 hover:border-primary/30'}`}
           >
             {s === 'pending' && 'Pendientes'}
             {s === 'preparing' && 'En Cocina'}
@@ -89,8 +89,8 @@ export const OrderManager = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {filteredOrders.length === 0 ? (
           <div className="lg:col-span-2 text-center py-20 bg-surface rounded-3xl border border-dashed border-white/5">
-            <ShoppingBag className="mx-auto text-on-surface/10 mb-4" size={48} />
-            <p className="text-on-surface/40 uppercase tracking-[0.3em] text-xs">No hay pedidos en esta sección</p>
+            <ShoppingBag className="mx-auto text-on-surface/40 mb-4" size={48} />
+            <p className="text-on-surface/80 uppercase tracking-[0.3em] text-xs">No hay pedidos en esta sección</p>
           </div>
         ) : (
           filteredOrders.map((order) => (
@@ -103,7 +103,7 @@ export const OrderManager = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <h4 className="text-2xl font-headline italic text-primary mb-1">{order.customer_name}</h4>
-                  <div className="flex items-center gap-4 text-xs text-on-surface/40 font-bold uppercase tracking-widest">
+                  <div className="flex items-center gap-4 text-xs text-on-surface/80 font-bold uppercase tracking-widest">
                     <span className="flex items-center gap-1"><Clock size={14} /> {new Date(order.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                     <span className="flex items-center gap-1 text-primary"><Phone size={14} /> {order.user_phone}</span>
                   </div>
@@ -122,7 +122,7 @@ export const OrderManager = () => {
                   </div>
                 ))}
                 <div className="pt-4 border-t border-white/5 flex justify-between items-center">
-                  <span className="text-xs font-black uppercase tracking-widest text-on-surface/40">Total</span>
+                  <span className="text-xs font-black uppercase tracking-widest text-on-surface/80">Total</span>
                   <span className="text-xl font-headline italic text-primary">{Number(order.total || 0).toFixed(2)}€</span>
                 </div>
               </div>
