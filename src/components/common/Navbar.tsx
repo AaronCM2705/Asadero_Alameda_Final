@@ -19,12 +19,18 @@ export const Navbar = () => {
 
   const isHome = location.pathname === '/';
 
-  const handleSignOut = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    await signOut();
+  const handleSignOut = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
     setIsUserMenuOpen(false);
-    // Hard reset para limpiar todo el estado del navegador
+    setIsMobileMenuOpen(false);
+    
+    await signOut();
+    
+    // Forzar recarga de página para limpiar memoria
     window.location.href = '/';
   };
 
@@ -108,9 +114,9 @@ export const Navbar = () => {
                         </Link>
                       )}
                       <button 
-                        onMouseDown={(e) => {
-                          console.log("Logout presionado!");
-                          handleSignOut(e as unknown as React.MouseEvent);
+                        onClick={(e) => {
+                          console.log("Cerrando sesión...");
+                          handleSignOut(e);
                         }}
                         className="w-full flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-red-400 hover:bg-white/5 rounded-xl transition-colors cursor-pointer"
                       >
