@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Clock, LayoutDashboard } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export const Footer = () => {
   return (
