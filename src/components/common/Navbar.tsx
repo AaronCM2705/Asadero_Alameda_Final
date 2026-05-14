@@ -110,7 +110,7 @@ export const Navbar = () => {
                       <button 
                         onMouseDown={(e) => {
                           console.log("Logout presionado!");
-                          handleSignOut(e as any);
+                          handleSignOut(e as unknown as React.MouseEvent);
                         }}
                         className="w-full flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-red-400 hover:bg-white/5 rounded-xl transition-colors cursor-pointer"
                       >
