@@ -1,17 +1,30 @@
 import { useState } from 'react';
-import { ShoppingBag, Menu as MenuIcon, X } from 'lucide-react';
+import { ShoppingBag, Menu as MenuIcon, X, User as UserIcon, LogOut, ShieldCheck } from 'lucide-react';
 import { useCart } from '../../hooks/useCart';
+import { useAuth } from '../../context/AuthContext';
 import { CartDrawer } from '../client/CartDrawer';
-import { Link, useLocation } from 'react-router-dom';
+import { AuthModal } from '../auth/AuthModal';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { isSupabaseConfigured } from '../../lib/supabase';
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  
   const { cartCount } = useCart();
+  const { user, isAdmin, signOut } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isHome = location.pathname === '/';
+
+  const handleSignOut = async () => {
+    await signOut();
+    setIsUserMenuOpen(false);
+    navigate('/');
+  };
 
   return (
     <>
@@ -39,6 +52,7 @@ export const Navbar = () => {
           <div className="hidden md:flex items-center gap-12">
             <Link to="/" className="text-[10px] font-black uppercase tracking-[0.3em] text-on-surface/60 hover:text-primary transition-colors">Inicio</Link>
             <Link to="/menu" className="text-[10px] font-black uppercase tracking-[0.3em] text-on-surface/60 hover:text-primary transition-colors">La Carta</Link>
+            <Link to="/sobre-nosotros" className="text-[10px] font-black uppercase tracking-[0.3em] text-on-surface/60 hover:text-primary transition-colors">Sobre Nosotros</Link>
           </div>
 
           {/* Actions */}
@@ -55,6 +69,54 @@ export const Navbar = () => {
               )}
             </button>
 
+            {/* User Access Real */}
+            <div className="relative">
+              {!user ? (
+                <button 
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className="hidden md:flex items-center gap-2 p-2 text-on-surface/80 hover:text-primary transition-colors group"
+                >
+                  <UserIcon size={20} className="group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Entrar</span>
+                </button>
+              ) : (
+                <div className="relative">
+                  <button 
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                    className="hidden md:flex items-center gap-2 p-2 text-primary hover:text-yellow-400 transition-colors"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                      <UserIcon size={16} />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest max-w-[80px] truncate">
+                      {user.user_metadata.full_name || user.email?.split('@')[0]}
+                    </span>
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {isUserMenuOpen && (
+                    <div className="absolute right-0 mt-4 w-48 glass-panel border-white/10 rounded-2xl p-2 shadow-2xl animate-fade-in-up">
+                      {isAdmin && (
+                        <Link 
+                          to="/admin" 
+                          onClick={() => setIsUserMenuOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-primary hover:bg-white/5 rounded-xl transition-colors"
+                        >
+                          <ShieldCheck size={16} /> Panel Admin
+                        </Link>
+                      )}
+                      <button 
+                        onClick={handleSignOut}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-red-400 hover:bg-white/5 rounded-xl transition-colors"
+                      >
+                        <LogOut size={16} /> Salir
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden text-primary p-2"
@@ -68,9 +130,28 @@ export const Navbar = () => {
         <div className={`md:hidden fixed inset-0 bg-background z-[60] flex flex-col items-center justify-center gap-12 transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
           <Link onClick={() => setIsMobileMenuOpen(false)} to="/" className="text-2xl font-headline italic gold-gradient-text">Inicio</Link>
           <Link onClick={() => setIsMobileMenuOpen(false)} to="/menu" className="text-2xl font-headline italic gold-gradient-text">La Carta</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} to="/sobre-nosotros" className="text-2xl font-headline italic gold-gradient-text">Sobre Nosotros</Link>
+          
+          {!user ? (
+            <button 
+              onClick={() => { setIsMobileMenuOpen(false); setIsAuthModalOpen(true); }}
+              className="mt-8 bg-primary text-black px-8 py-3 rounded-xl text-xs font-black uppercase tracking-widest"
+            >
+              Entrar
+            </button>
+          ) : (
+            <div className="flex flex-col items-center gap-6">
+              {isAdmin && <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)} className="text-primary font-black uppercase tracking-widest text-xs">Ir al Panel Admin</Link>}
+              <button onClick={handleSignOut} className="text-red-400 font-black uppercase tracking-widest text-xs">Cerrar Sesión</button>
+            </div>
+          )}
+          
           <button onClick={() => setIsMobileMenuOpen(false)} className="absolute top-8 right-8 text-on-surface/40"><X size={32} /></button>
         </div>
       </nav>
+
+      {/* Auth Modal */}
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
 
       {/* Cart Drawer */}
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />

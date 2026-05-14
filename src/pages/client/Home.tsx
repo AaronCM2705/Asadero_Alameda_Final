@@ -1,24 +1,9 @@
-import { useState } from 'react';
 import { Navbar } from '../../components/common/Navbar';
 import { Footer } from '../../components/common/Footer';
-import { OrderTicketModal } from '../../components/client/OrderTicketModal';
 import { ChevronRight, Flame } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import type { Order } from '../../types';
 
 export const ClientHome = () => {
-  const [isTicketOpen, setIsTicketOpen] = useState(false);
-
-  const dummyOrder: Order = {
-    id: "ord_12345",
-    user_phone: "672 803 909",
-    customer_name: "Cliente Alameda",
-    items: [{ product_id: '1', name: 'Pollo Asado', variant_name: 'Pollo Entero', quantity: 1, price: 12.50 }],
-    total: 12.50,
-    notes: "",
-    status: 'pending',
-    created_at: new Date().toISOString()
-  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col font-body text-on-surface">
@@ -59,12 +44,6 @@ export const ClientHome = () => {
               Ver La Carta <ChevronRight size={16} />
             </Link>
             
-            <button 
-              onClick={() => setIsTicketOpen(true)}
-              className="text-on-surface/80 hover:text-primary font-black uppercase tracking-[0.3em] text-[10px] border-b border-primary/30 pb-1 transition-colors"
-            >
-              Probar Demo de Pedido
-            </button>
           </div>
         </div>
       </section>
@@ -86,12 +65,6 @@ export const ClientHome = () => {
       </section>
 
       <Footer />
-
-      <OrderTicketModal 
-        isOpen={isTicketOpen} 
-        onClose={() => setIsTicketOpen(false)} 
-        order={dummyOrder} 
-      />
     </div>
   );
 };
