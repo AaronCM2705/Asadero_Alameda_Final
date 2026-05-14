@@ -60,9 +60,10 @@ export const Menu = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background flex flex-col font-body text-on-surface">
+    <div className="min-h-screen bg-background flex flex-col font-body">
       <Navbar />
 
+      <main className="flex-1">
       {/* Header de la Carta */}
       <header className="pt-32 pb-16 px-6 text-center bg-gradient-to-b from-surface to-background relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-5 pointer-events-none">
@@ -116,7 +117,7 @@ export const Menu = () => {
       </section>
 
       {/* Grill de Productos */}
-      <main className="flex-grow p-6 md:p-10 max-w-7xl mx-auto w-full">
+      <div className="flex-grow p-6 md:p-10 max-w-7xl mx-auto w-full">
         {loading ? (
           <div className="h-64 flex flex-col items-center justify-center gap-4 text-primary/40">
             <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>

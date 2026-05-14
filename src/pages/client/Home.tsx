@@ -9,8 +9,9 @@ export const ClientHome = () => {
     <div className="min-h-screen bg-background flex flex-col font-body text-on-surface">
       <Navbar />
 
-      {/* Hero Section Cinematográfica P1 Style */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <main className="flex-1">
+        {/* Hero Section Cinematográfica P1 Style */}
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Imagen de fondo con Overlay Gradiente */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -51,15 +52,15 @@ export const ClientHome = () => {
       {/* Sección Informativa Rápida */}
       <section className="py-24 px-6 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-100">
-          <h4 className="font-headline italic text-xl text-[#F3D576]">Producto Local</h4>
+          <h3 className="font-headline italic text-xl text-[#F3D576]">Producto Local</h3>
           <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/90">Seleccionamos las mejores piezas de la región para garantizar frescura absoluta.</p>
         </div>
         <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-300">
-          <h4 className="font-headline italic text-xl text-[#F3D576]">Leña de Encina</h4>
+          <h3 className="font-headline italic text-xl text-[#F3D576]">Leña de Encina</h3>
           <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/90">El aroma inconfundible de nuestra leña seleccionada impregna cada fibra.</p>
         </div>
         <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-500">
-          <h4 className="font-headline italic text-xl text-[#F3D576]">Receta Secreta</h4>
+          <h3 className="font-headline italic text-xl text-[#F3D576]">Receta Secreta</h3>
           <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/90">Un adobo transmitido de padres a hijos para un sabor inigualable.</p>
         </div>
       </section>
@@ -138,6 +139,7 @@ export const ClientHome = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

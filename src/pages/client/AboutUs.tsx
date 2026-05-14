@@ -7,6 +7,7 @@ export const AboutUs = () => {
     <div className="min-h-screen bg-background flex flex-col font-body text-on-surface">
       <Navbar />
 
+      <main className="flex-1">
       {/* Hero Section - Estilo Editorial */}
       <header className="relative pt-40 pb-20 px-6 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-10 pointer-events-none">
@@ -122,6 +123,7 @@ export const AboutUs = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>
