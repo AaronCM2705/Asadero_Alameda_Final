@@ -20,10 +20,13 @@ export const Navbar = () => {
 
   const isHome = location.pathname === '/';
 
-  const handleSignOut = async () => {
+  const handleSignOut = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     await signOut();
     setIsUserMenuOpen(false);
-    navigate('/');
+    // Hard reset para limpiar todo el estado del navegador
+    window.location.href = '/';
   };
 
   return (
@@ -106,8 +109,8 @@ export const Navbar = () => {
                         </Link>
                       )}
                       <button 
-                        onClick={handleSignOut}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-red-400 hover:bg-white/5 rounded-xl transition-colors"
+                        onClick={(e) => handleSignOut(e)}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-red-400 hover:bg-white/5 rounded-xl transition-colors relative z-[70]"
                       >
                         <LogOut size={16} /> Salir
                       </button>
