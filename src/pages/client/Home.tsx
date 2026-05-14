@@ -82,24 +82,37 @@ export const ClientHome = () => {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <span className="block text-[10px] font-black text-primary uppercase tracking-widest">Dirección</span>
-                  <span className="text-sm font-bold uppercase tracking-wider">Av. Alameda de la Victoria, 45</span>
+                  <span className="block text-[10px] font-black text-primary uppercase tracking-widest">Dirección Exacta</span>
+                  <span className="text-sm font-bold uppercase tracking-wider text-on-surface/80">Calle Alameda, 14, 04800 Albox, Almería</span>
                 </div>
+              </div>
+              <div className="pt-4">
+                <a 
+                  href="https://maps.app.goo.gl/5siyh7yZKjJchJFL8" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-primary hover:text-white transition-colors"
+                >
+                  Abrir en Google Maps <ArrowRight size={14} />
+                </a>
               </div>
             </div>
           </div>
           
-          <div className="w-full md:w-1/2 h-[400px] glass-panel rounded-3xl overflow-hidden relative group animate-fade-in-up-smooth delay-300">
-            {/* Aquí iría el mapa real, ponemos una imagen de referencia premium */}
-            <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?q=80&w=2000" 
-              alt="Mapa Ubicación" 
-              className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-110"
-            />
-            <div className="absolute inset-0 flex items-center justify-center z-20">
-              <div className="p-6 glass-panel rounded-full animate-float">
-                <MapPin size={32} className="text-primary" />
+          <div className="w-full md:w-1/2 h-[400px] glass-panel rounded-3xl overflow-hidden relative group animate-fade-in-up-smooth delay-300 border border-white/5 shadow-2xl">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.8772974002754!2d-1.9481632885549938!3d37.392733971967715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd652ef43ceaaaeb%3A0xe2eda39ce1d098bd!2sAsadero%20Alameda!5e0!3m2!1ses-419!2ses!4v1778762842963!5m2!1ses-419!2ses" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0, filter: 'grayscale(1) contrast(1.2) invert(0.9) hue-rotate(180deg)' }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="opacity-80 hover:opacity-100 transition-opacity duration-500"
+            ></iframe>
+            <div className="absolute top-4 right-4 z-20">
+              <div className="p-3 glass-panel rounded-full bg-black/60 border-primary/20">
+                <MapPin size={20} className="text-primary" />
               </div>
             </div>
           </div>
