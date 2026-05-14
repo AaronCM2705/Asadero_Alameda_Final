@@ -4,7 +4,7 @@ import { useCart } from '../../hooks/useCart';
 import { useAuth } from '../../context/AuthContext';
 import { CartDrawer } from '../client/CartDrawer';
 import { AuthModal } from '../auth/AuthModal';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { isSupabaseConfigured } from '../../lib/supabase';
 
 export const Navbar = () => {
@@ -16,7 +16,6 @@ export const Navbar = () => {
   const { cartCount } = useCart();
   const { user, isAdmin, signOut } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate();
 
   const isHome = location.pathname === '/';
 
