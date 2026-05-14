@@ -14,9 +14,11 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(() => {
+    // Recuperar estado admin de localStorage al cargar para evitar parpadeos
+    return localStorage.getItem('asadero_is_admin') === 'true';
+  });
 
-  // Definimos la función antes de usarla en useEffect
   const fetchUserProfile = useCallback(async (userId: string) => {
     try {
       const { data, error } = await supabase
@@ -26,9 +28,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         .single();
 
       if (!error && data) {
-        setIsAdmin(data.role === 'admin');
+        const isUserAdmin = data.role === 'admin';
+        setIsAdmin(isUserAdmin);
+        localStorage.setItem('asadero_is_admin', String(isUserAdmin));
       } else {
         setIsAdmin(false);
+        localStorage.removeItem('asadero_is_admin');
       }
     } catch (err) {
       console.error("Error cargando perfil:", err);
@@ -39,7 +44,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   useEffect(() => {
-    // Verificar sesión actual al cargar
+    // 1. Verificar sesión actual al cargar
     const initAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       const currentUser = session?.user ?? null;
@@ -49,14 +54,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         await fetchUserProfile(currentUser.id);
       } else {
         setIsAdmin(false);
+        localStorage.removeItem('asadero_is_admin');
         setLoading(false);
       }
     };
 
     initAuth();
 
-    // Escuchar cambios en la autenticación
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    // 2. Escuchar cambios en la autenticación (Login, Logout, Token renovado)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log("Auth Event:", event);
       const currentUser = session?.user ?? null;
       setUser(currentUser);
       
@@ -64,6 +71,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         await fetchUserProfile(currentUser.id);
       } else {
         setIsAdmin(false);
+        localStorage.removeItem('asadero_is_admin');
         setLoading(false);
       }
     });
@@ -72,7 +80,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [fetchUserProfile]);
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    try {
+      setLoading(true);
+      await supabase.auth.signOut();
+      setUser(null);
+      setIsAdmin(false);
+      localStorage.removeItem('asadero_is_admin');
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
