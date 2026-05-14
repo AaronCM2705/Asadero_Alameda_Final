@@ -87,7 +87,7 @@ export const AdminDashboard = () => {
       {/* Contenido Principal */}
       <main className="flex-grow p-6 md:p-12 lg:p-20 overflow-y-auto">
         <header className="mb-12">
-          <p className="text-[10px] uppercase tracking-[0.5em] text-primary/60 font-black mb-2">Panel de Control</p>
+          <p className="text-[10px] uppercase tracking-[0.5em] text-primary font-black mb-2">Panel de Control</p>
           <h2 className="text-4xl font-headline italic text-on-surface">
             {activeTab === 'orders' && 'Gestión de Pedidos'}
             {activeTab === 'finance' && 'Resumen Financiero'}
