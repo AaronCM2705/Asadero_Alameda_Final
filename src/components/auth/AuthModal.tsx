@@ -50,7 +50,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
         {/* Decoración de fondo */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 blur-[60px] rounded-full pointer-events-none"></div>
 
-        <button onClick={onClose} className="absolute top-6 right-6 text-on-surface/40 hover:text-primary transition-colors">
+        <button onClick={onClose} aria-label="Cerrar ventana" className="absolute top-4 right-4 p-2 text-on-surface/60 hover:text-primary transition-colors">
           <X size={24} />
         </button>
 
@@ -102,8 +102,9 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
             />
             <button
               type="button"
+              aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface/40 hover:text-primary transition-colors"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-on-surface/60 hover:text-primary transition-colors"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
