@@ -76,7 +76,7 @@ export const Menu = () => {
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Nuestra Selección</span>
           </div>
           <h1 className="text-fluid-h2 font-headline italic gold-gradient-text uppercase mb-4">Sinfonía de Brasas</h1>
-          <p className="max-w-2xl mx-auto text-xs md:text-sm text-on-surface/50 uppercase tracking-[0.2em] leading-relaxed">
+          <p className="max-w-2xl mx-auto text-xs md:text-sm text-on-surface/80 uppercase tracking-[0.2em] leading-relaxed">
             Cada plato es una obra maestra cocinada a fuego lento con leña de encina seleccionada.
           </p>
         </div>
@@ -105,13 +105,13 @@ export const Menu = () => {
         </div>
 
         <div className="relative w-full md:w-64">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface/30" size={16} />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface/60" size={16} />
           <input 
             type="text" 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="BUSCAR DELICIA..." 
-            className="w-full bg-black/40 border border-white/10 rounded-full py-2 pl-10 pr-4 text-[10px] uppercase tracking-widest focus:outline-none focus:border-primary/50 transition-colors"
+            className="w-full bg-black/40 border border-white/10 rounded-full py-2 pl-10 pr-4 text-[10px] uppercase tracking-widest focus:outline-none focus:border-primary/50 transition-colors placeholder-on-surface/60"
           />
         </div>
       </section>
@@ -129,8 +129,8 @@ export const Menu = () => {
               <Utensils size={32} className="text-on-surface/20" />
             </div>
             <div className="text-center">
-              <p className="text-on-surface/60 font-headline italic text-xl mb-2">Nada por aquí aún</p>
-              <p className="text-[10px] text-on-surface/30 uppercase tracking-[0.2em]">Prueba a cambiar el filtro o vuelve pronto.</p>
+              <h2 className="text-on-surface/80 font-headline italic text-xl mb-2">Nada por aquí aún</h2>
+              <p className="text-[10px] text-on-surface/60 uppercase tracking-[0.2em]">Prueba a cambiar el filtro o vuelve pronto.</p>
             </div>
           </div>
         ) : (
@@ -158,9 +158,9 @@ export const Menu = () => {
                   </div>
                 </div>
                 
-                <h3 className="font-headline italic text-2xl text-on-surface mb-2 group-hover:text-primary transition-colors">
+                <h2 className="font-headline italic text-2xl text-on-surface mb-2 group-hover:text-primary transition-colors">
                   {product.name}
-                </h3>
+                </h2>
                 <p className="text-xs text-on-surface/40 uppercase tracking-widest leading-loose line-clamp-2">
                   {product.description}
                 </p>
