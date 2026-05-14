@@ -82,12 +82,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signOut = async () => {
     try {
       setLoading(true);
-      await supabase.auth.signOut();
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error("Error devuelto por Supabase al salir:", error);
+      }
+      
+      // Borrar explícitamente las claves de Supabase de localStorage
+      for (const key in localStorage) {
+        if (key.startsWith('sb-') && key.endsWith('-auth-token')) {
+          localStorage.removeItem(key);
+        }
+      }
+      
       setUser(null);
       setIsAdmin(false);
       localStorage.removeItem('asadero_is_admin');
     } catch (error) {
-      console.error("Error al cerrar sesión:", error);
+      console.error("Excepción al cerrar sesión:", error);
     } finally {
       setLoading(false);
     }
