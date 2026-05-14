@@ -46,12 +46,6 @@ export const Footer = () => {
               <Phone size={18} />
               +34 672 803 909
             </a>
-            <div className="pt-4">
-              <a href="/login-admin" className="text-[10px] uppercase tracking-widest text-primary/40 hover:text-primary flex items-center gap-2 transition-colors">
-                <LayoutDashboard size={12} />
-                Acceso Interno
-              </a>
-            </div>
           </div>
         </div>
 
