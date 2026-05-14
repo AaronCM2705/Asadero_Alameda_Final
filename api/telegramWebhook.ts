@@ -44,7 +44,8 @@ interface WebhookResponse {
   end: () => void;
 }
 
-const TELEGRAM_TOKEN = process.env.VITE_TELEGRAM_BOT_TOKEN || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_TELEGRAM_BOT_TOKEN);
+// @ts-ignore - ImportMeta.env es inyectado por Vite en build, pero TS no lo reconoce fuera de src
+const TELEGRAM_TOKEN = process.env.VITE_TELEGRAM_BOT_TOKEN || (import.meta as any).env?.VITE_TELEGRAM_BOT_TOKEN;
 
 export default async function handler(req: WebhookRequest, res: WebhookResponse) {
   if (req.method !== 'POST') {
