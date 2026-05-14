@@ -52,15 +52,15 @@ export const ClientHome = () => {
       <section className="py-24 px-6 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-100">
           <h4 className="font-headline italic text-xl text-primary">Producto Local</h4>
-          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/50">Seleccionamos las mejores piezas de la región para garantizar frescura absoluta.</p>
+          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/70">Seleccionamos las mejores piezas de la región para garantizar frescura absoluta.</p>
         </div>
         <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-300">
           <h4 className="font-headline italic text-xl text-primary">Leña de Encina</h4>
-          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/50">El aroma inconfundible de nuestra leña seleccionada impregna cada fibra.</p>
+          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/70">El aroma inconfundible de nuestra leña seleccionada impregna cada fibra.</p>
         </div>
         <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-500">
           <h4 className="font-headline italic text-xl text-primary">Receta Secreta</h4>
-          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/50">Un adobo transmitido de padres a hijos para un sabor inigualable.</p>
+          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/70">Un adobo transmitido de padres a hijos para un sabor inigualable.</p>
         </div>
       </section>
 
@@ -126,6 +126,7 @@ export const ClientHome = () => {
           <div className="w-full md:w-2/3 h-[500px] glass-panel rounded-[2rem] overflow-hidden relative group animate-fade-in-up-smooth delay-300 border border-white/5 shadow-2xl">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.8772974002754!2d-1.9481632885549938!3d37.392733971967715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd652ef43ceaaaeb%3A0xe2eda39ce1d098bd!2sAsadero%20Alameda!5e0!3m2!1ses-419!2ses!4v1778762842963!5m2!1ses-419!2ses" 
+              title="Mapa de ubicación de Asadero Alameda"
               width="100%" 
               height="100%" 
               style={{ border: 0, filter: 'grayscale(1) contrast(1.1) invert(0.9) hue-rotate(180deg)' }} 

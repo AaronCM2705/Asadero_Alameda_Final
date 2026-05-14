@@ -16,7 +16,7 @@ export const Footer = () => {
             Especialistas en asados artesanales desde hace generaciones.
           </p>
           <div className="flex gap-4">
-            <a href="#" className="text-primary hover:text-white transition-colors"><Mail size={20} /></a>
+            <a href="mailto:info@asaderoalameda.com" aria-label="Enviar correo electrónico" className="text-primary hover:text-white transition-colors"><Mail size={20} /></a>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 text-center">
-        <p className="text-[10px] text-on-surface/30 uppercase tracking-[0.4em]">
+        <p className="text-[10px] text-on-surface/60 uppercase tracking-[0.4em]">
           &copy; {new Date().getFullYear()} Asadero Alameda - Experiencia Premium
         </p>
       </div>

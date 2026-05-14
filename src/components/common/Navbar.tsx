@@ -70,7 +70,7 @@ export const Navbar = () => {
             </div>
             <div className="hidden md:block">
               <span className="block font-headline italic text-lg text-primary leading-none">Asadero Alameda</span>
-              <span className="text-[8px] uppercase tracking-[0.4em] text-on-surface/40 font-black">Fuego & Tradición</span>
+              <span className="text-[10px] uppercase tracking-[0.4em] text-on-surface/60 font-black">Fuego & Tradición</span>
             </div>
           </Link>
 
@@ -85,6 +85,7 @@ export const Navbar = () => {
           <div className="flex items-center gap-4 md:gap-8">
             <button 
               onClick={() => setIsCartOpen(true)}
+              aria-label="Abrir carrito"
               className="relative p-2 text-on-surface/80 hover:text-primary transition-colors group"
             >
               <ShoppingBag size={24} />
@@ -148,6 +149,7 @@ export const Navbar = () => {
 
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Cerrar menú principal" : "Abrir menú principal"}
               className="md:hidden text-primary p-2"
             >
               {isMobileMenuOpen ? <X size={28} /> : <MenuIcon size={28} />}
@@ -175,7 +177,7 @@ export const Navbar = () => {
             </div>
           )}
           
-          <button onClick={() => setIsMobileMenuOpen(false)} className="absolute top-8 right-8 text-on-surface/40"><X size={32} /></button>
+          <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Cerrar menú" className="absolute top-8 right-8 text-on-surface/40 hover:text-white transition-colors"><X size={32} /></button>
         </div>
       </nav>
 
