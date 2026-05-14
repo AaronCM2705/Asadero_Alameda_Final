@@ -36,8 +36,9 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
         if (error) throw error;
       }
       onClose();
-    } catch (err: any) {
-      setError(err.message || 'Error al procesar la solicitud');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Error al procesar la solicitud';
+      setError(message);
     } finally {
       setLoading(false);
     }
