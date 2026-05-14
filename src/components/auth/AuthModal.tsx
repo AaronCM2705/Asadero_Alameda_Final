@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Mail, Lock, User, ArrowRight, X, AlertCircle } from 'lucide-react';
+import { Mail, Lock, User, ArrowRight, X, AlertCircle, Eye, EyeOff } from 'lucide-react';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -14,6 +14,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   if (!isOpen) return null;
 
@@ -64,40 +65,47 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {!isLogin && (
             <div className="relative">
-              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface/30" size={18} />
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-primary" size={18} />
               <input
                 type="text"
                 placeholder="Nombre Completo"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full bg-surface/50 border border-white/5 rounded-xl py-3 pl-12 pr-4 text-sm focus:border-primary/50 outline-none transition-colors"
+                className="w-full bg-surface/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-sm focus:border-primary/50 outline-none transition-colors text-on-surface"
               />
             </div>
           )}
 
           <div className="relative">
-            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface/30" size={18} />
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-primary" size={18} />
             <input
               type="email"
               placeholder="Correo Electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full bg-surface/50 border border-white/5 rounded-xl py-3 pl-12 pr-4 text-sm focus:border-primary/50 outline-none transition-colors"
+              className="w-full bg-surface/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-sm focus:border-primary/50 outline-none transition-colors text-on-surface"
             />
           </div>
 
           <div className="relative">
-            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface/30" size={18} />
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-primary" size={18} />
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full bg-surface/50 border border-white/5 rounded-xl py-3 pl-12 pr-4 text-sm focus:border-primary/50 outline-none transition-colors"
+              className="w-full bg-surface/50 border border-white/10 rounded-xl py-4 pl-12 pr-12 text-sm focus:border-primary/50 outline-none transition-colors text-on-surface"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface/40 hover:text-primary transition-colors"
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
           </div>
 
           {error && (
