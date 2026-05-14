@@ -68,7 +68,7 @@ export const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
             <ShoppingBag className="text-primary" size={24} />
             <h2 className="text-xl font-headline italic text-on-surface">Tu Selección</h2>
           </div>
-          <button onClick={onClose} className="p-2 text-on-surface/40 hover:text-primary transition-colors">
+          <button onClick={onClose} aria-label="Cerrar carrito" className="p-2 text-on-surface/80 hover:text-primary transition-colors">
             <X size={24} />
           </button>
         </div>
@@ -86,7 +86,7 @@ export const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
               </p>
             </div>
           ) : cart.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-center space-y-4 opacity-40">
+            <div className="h-full flex flex-col items-center justify-center text-center space-y-4 text-on-surface/70">
               <ShoppingBag size={64} />
               <p className="text-sm uppercase tracking-[0.3em] font-black">El carrito está vacío</p>
             </div>
