@@ -97,13 +97,13 @@ export const FinanceDashboard = () => {
     <div className="space-y-8 animate-fade-in-scale">
       {/* Botones de Acción */}
       <div className="flex flex-wrap gap-4">
-        <button onClick={exportToPDF} className="flex items-center gap-2 bg-red-500/20 text-red-500 border border-red-500/30 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all">
+        <button onClick={exportToPDF} className="flex items-center gap-2 bg-red-500/30 text-red-500 border border-red-500/40 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all">
           <FileText size={14} /> Descargar PDF
         </button>
-        <button onClick={exportToExcel} className="flex items-center gap-2 bg-green-500/20 text-green-500 border border-green-500/30 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-green-500 hover:text-white transition-all">
+        <button onClick={exportToExcel} className="flex items-center gap-2 bg-green-500/30 text-green-500 border border-green-500/40 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-green-500 hover:text-white transition-all">
           <FileSpreadsheet size={14} /> Exportar Excel
         </button>
-        <button onClick={exportToImage} className="flex items-center gap-2 bg-primary/20 text-primary border border-primary/30 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-black transition-all">
+        <button onClick={exportToImage} className="flex items-center gap-2 bg-primary/30 text-primary border border-primary/40 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-black transition-all">
           <ImageIcon size={14} /> Captura PNG
         </button>
       </div>
@@ -144,7 +144,7 @@ export const FinanceDashboard = () => {
         {/* Gráfica de Ganancias */}
         <div className="glass-panel p-8 rounded-3xl border-primary/5 h-[400px]">
           <div className="flex items-center justify-between mb-8">
-            <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Evolución de Ingresos</h5>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Evolución de Ingresos</h4>
           </div>
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData}>
