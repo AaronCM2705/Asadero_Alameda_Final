@@ -51,15 +51,15 @@ export const ClientHome = () => {
 
       {/* Sección Informativa Rápida */}
       <section className="py-24 px-6 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
-        <div className="bg-surface p-10 text-center space-y-4 rounded-xl border border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-100 shadow-xl">
+        <div className="bg-surface p-10 text-center space-y-4 rounded-xl border border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 shadow-xl">
           <h3 className="font-headline italic text-xl text-[#F3D576]">Producto Local</h3>
           <p className="text-xs uppercase tracking-widest leading-loose text-white">Seleccionamos las mejores piezas de la región para garantizar frescura absoluta.</p>
         </div>
-        <div className="bg-surface p-10 text-center space-y-4 rounded-xl border border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-300 shadow-xl">
+        <div className="bg-surface p-10 text-center space-y-4 rounded-xl border border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 shadow-xl">
           <h3 className="font-headline italic text-xl text-[#F3D576]">Leña de Encina</h3>
           <p className="text-xs uppercase tracking-widest leading-loose text-white">El aroma inconfundible de nuestra leña seleccionada impregna cada fibra.</p>
         </div>
-        <div className="bg-surface p-10 text-center space-y-4 rounded-xl border border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-500 shadow-xl">
+        <div className="bg-surface p-10 text-center space-y-4 rounded-xl border border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 shadow-xl">
           <h3 className="font-headline italic text-xl text-[#F3D576]">Receta Secreta</h3>
           <p className="text-xs uppercase tracking-widest leading-loose text-white">Un adobo transmitido de padres a hijos para un sabor inigualable.</p>
         </div>
