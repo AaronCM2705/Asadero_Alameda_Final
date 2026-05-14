@@ -11,7 +11,7 @@ export const Footer = () => {
             <img src="/assets/images/logo-gold.png" alt="Logo" className="h-10 w-auto" />
             <h3 className="font-headline text-xl text-primary italic">Asadero Alameda</h3>
           </div>
-          <p className="text-on-surface/40 text-sm leading-relaxed font-body uppercase tracking-wider">
+          <p className="text-on-surface/70 text-sm leading-relaxed font-body uppercase tracking-wider">
             La esencia del fuego y la tradición en cada bocado. <br/>
             Especialistas en asados artesanales desde hace generaciones.
           </p>

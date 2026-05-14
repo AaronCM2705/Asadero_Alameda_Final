@@ -51,16 +51,16 @@ export const ClientHome = () => {
       {/* Sección Informativa Rápida */}
       <section className="py-24 px-6 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-100">
-          <h4 className="font-headline italic text-xl text-primary">Producto Local</h4>
-          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/70">Seleccionamos las mejores piezas de la región para garantizar frescura absoluta.</p>
+          <h4 className="font-headline italic text-xl text-[#F3D576]">Producto Local</h4>
+          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/90">Seleccionamos las mejores piezas de la región para garantizar frescura absoluta.</p>
         </div>
         <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-300">
-          <h4 className="font-headline italic text-xl text-primary">Leña de Encina</h4>
-          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/70">El aroma inconfundible de nuestra leña seleccionada impregna cada fibra.</p>
+          <h4 className="font-headline italic text-xl text-[#F3D576]">Leña de Encina</h4>
+          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/90">El aroma inconfundible de nuestra leña seleccionada impregna cada fibra.</p>
         </div>
         <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-500">
-          <h4 className="font-headline italic text-xl text-primary">Receta Secreta</h4>
-          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/70">Un adobo transmitido de padres a hijos para un sabor inigualable.</p>
+          <h4 className="font-headline italic text-xl text-[#F3D576]">Receta Secreta</h4>
+          <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/90">Un adobo transmitido de padres a hijos para un sabor inigualable.</p>
         </div>
       </section>
 
