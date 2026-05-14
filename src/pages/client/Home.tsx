@@ -1,6 +1,6 @@
 import { Navbar } from '../../components/common/Navbar';
 import { Footer } from '../../components/common/Footer';
-import { ChevronRight, Flame } from 'lucide-react';
+import { ChevronRight, Flame, MapPin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const ClientHome = () => {
@@ -83,7 +83,7 @@ export const ClientHome = () => {
                 </div>
                 <div>
                   <span className="block text-[10px] font-black text-primary uppercase tracking-widest">Dirección Exacta</span>
-                  <span className="text-sm font-bold uppercase tracking-wider text-on-surface/80">Calle Alameda, 14, 04800 Albox, Almería</span>
+                  <span className="text-sm font-bold uppercase tracking-wider text-on-surface/80">C. Juan XXIII, 12A, 04600 Huércal-Overa, Almería</span>
                 </div>
               </div>
               <div className="pt-4">
@@ -104,11 +104,11 @@ export const ClientHome = () => {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.8772974002754!2d-1.9481632885549938!3d37.392733971967715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd652ef43ceaaaeb%3A0xe2eda39ce1d098bd!2sAsadero%20Alameda!5e0!3m2!1ses-419!2ses!4v1778762842963!5m2!1ses-419!2ses" 
               width="100%" 
               height="100%" 
-              style={{ border: 0, filter: 'grayscale(1) contrast(1.2) invert(0.9) hue-rotate(180deg)' }} 
+              style={{ border: 0 }} 
               allowFullScreen={true} 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
-              className="opacity-80 hover:opacity-100 transition-opacity duration-500"
+              className="opacity-90 hover:opacity-100 transition-opacity duration-500"
             ></iframe>
             <div className="absolute top-4 right-4 z-20">
               <div className="p-3 glass-panel rounded-full bg-black/60 border-primary/20">
