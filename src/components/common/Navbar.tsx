@@ -97,7 +97,7 @@ export const Navbar = () => {
 
                   {/* Dropdown Menu */}
                   {isUserMenuOpen && (
-                    <div className="absolute right-0 mt-4 w-48 glass-panel border-white/10 rounded-2xl p-2 shadow-2xl animate-fade-in-up">
+                    <div className="absolute right-0 mt-4 w-48 glass-panel border-white/10 rounded-2xl p-2 shadow-2xl animate-fade-in-up z-[100]">
                       {isAdmin && (
                         <Link 
                           to="/admin" 
@@ -108,8 +108,11 @@ export const Navbar = () => {
                         </Link>
                       )}
                       <button 
-                        onClick={(e) => handleSignOut(e)}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-red-400 hover:bg-white/5 rounded-xl transition-colors relative z-[70]"
+                        onMouseDown={(e) => {
+                          console.log("Logout presionado!");
+                          handleSignOut(e as any);
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-red-400 hover:bg-white/5 rounded-xl transition-colors cursor-pointer"
                       >
                         <LogOut size={16} /> Salir
                       </button>
