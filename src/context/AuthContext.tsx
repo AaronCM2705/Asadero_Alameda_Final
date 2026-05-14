@@ -82,25 +82,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signOut = async () => {
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        console.error("Error devuelto por Supabase al salir:", error);
-      }
       
-      // Borrar explícitamente las claves de Supabase de localStorage
-      for (const key in localStorage) {
-        if (key.startsWith('sb-') && key.endsWith('-auth-token')) {
-          localStorage.removeItem(key);
+      // 1. Borrar explícitamente las claves de Supabase de localStorage PRIMERO
+      // Así aseguramos que el usuario "desaparece" localmente al instante
+      const keysToRemove = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('sb-') && key.endsWith('-auth-token')) {
+          keysToRemove.push(key);
         }
       }
+      keysToRemove.forEach(k => localStorage.removeItem(k));
       
       setUser(null);
       setIsAdmin(false);
       localStorage.removeItem('asadero_is_admin');
+
+      // 2. Notificar al servidor en segundo plano (si falla no importa, ya estamos fuera localmente)
+      supabase.auth.signOut().then(({ error }) => {
+        if (error) console.error("Error devuelto por Supabase al salir:", error);
+      });
+
     } catch (error) {
       console.error("Excepción al cerrar sesión:", error);
     } finally {
       setLoading(false);
+      // Forzar recarga de página dura al final del proceso
+      window.location.href = '/';
     }
   };
 

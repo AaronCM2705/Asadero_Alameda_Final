@@ -29,9 +29,6 @@ export const Navbar = () => {
     setIsMobileMenuOpen(false);
     
     await signOut();
-    
-    // Forzar recarga de página para limpiar memoria
-    window.location.href = '/';
   };
 
   return (
