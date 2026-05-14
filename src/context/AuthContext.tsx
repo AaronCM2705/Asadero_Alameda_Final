@@ -25,20 +25,37 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
 
     // Escuchar cambios en la autenticación
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      checkAdminRole(session?.user?.email);
-      setLoading(false);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      const currentUser = session?.user ?? null;
+      setUser(currentUser);
+      
+      if (currentUser) {
+        await fetchUserProfile(currentUser.id);
+      } else {
+        setIsAdmin(false);
+        setLoading(false);
+      }
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  const checkAdminRole = (email?: string) => {
-    // Por ahora usamos una lista blanca de correos admin. 
-    // En el futuro esto puede venir de una tabla 'profiles' en Supabase.
-    const admins = ['admin@asaderoalameda.com', 'aaron@empresa.com']; 
-    setIsAdmin(!!email && admins.includes(email));
+  const fetchUserProfile = async (userId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', userId)
+        .single();
+
+      if (!error && data) {
+        setIsAdmin(data.role === 'admin');
+      }
+    } catch (err) {
+      console.error("Error cargando perfil:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const signOut = async () => {
