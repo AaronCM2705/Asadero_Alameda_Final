@@ -78,39 +78,47 @@ export const AboutUs = () => {
                   <MapPin className="text-primary mt-1" size={20} />
                   <div>
                     <p className="text-xs uppercase tracking-widest font-black mb-1">Dirección</p>
-                    <p className="text-sm text-on-surface/60">Calle de la Alameda, 12<br/>28014, Madrid</p>
+                    <p className="text-sm text-on-surface/60">C. Juan XXIII, 12A<br/>04600 Huércal-Overa, Almería</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Clock className="text-primary mt-1" size={20} />
                   <div>
                     <p className="text-xs uppercase tracking-widest font-black mb-1">Horario</p>
-                    <p className="text-sm text-on-surface/60">Martes a Domingo<br/>12:00 - 16:30</p>
+                    <p className="text-sm text-on-surface/60">Martes a Domingo<br/>12:00 - 16:30 / 19:30 - 23:00</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Phone className="text-primary mt-1" size={20} />
                   <div>
                     <p className="text-xs uppercase tracking-widest font-black mb-1">Contacto</p>
-                    <p className="text-sm text-on-surface/60">+34 912 345 678</p>
+                    <p className="text-sm text-on-surface/60">+34 672 803 909</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <button className="w-full py-4 bg-primary text-black font-black uppercase tracking-[0.3em] text-[10px] rounded-xl hover:bg-yellow-400 transition-all shadow-xl shadow-primary/10">
+            <a 
+              href="https://maps.app.goo.gl/5siyh7yZKjJchJFL8" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block text-center w-full py-4 bg-primary text-black font-black uppercase tracking-[0.2em] text-[11px] rounded-xl hover:bg-yellow-400 transition-all hover:scale-[1.02] shadow-[0_0_20px_rgba(212,175,55,0.15)]"
+            >
               Cómo llegar con Google Maps
-            </button>
+            </a>
           </div>
 
-          <div className="lg:col-span-2 h-[500px] rounded-3xl overflow-hidden border border-white/5 shadow-2xl relative grayscale hover:grayscale-0 transition-all duration-700">
-            {/* Simulación de Mapa - En producción aquí iría el Iframe de Google Maps */}
-            <div className="absolute inset-0 bg-zinc-900 flex items-center justify-center">
-              <div className="text-center space-y-4">
-                <MapPin size={48} className="text-primary mx-auto animate-bounce" />
-                <p className="text-[10px] uppercase tracking-[0.4em] text-on-surface/30 font-black">Mapa Interactivo Cargando...</p>
-              </div>
-            </div>
+          <div className="lg:col-span-2 h-[500px] rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.8772974002754!2d-1.9481632885549938!3d37.392733971967715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd652ef43ceaaaeb%3A0xe2eda39ce1d098bd!2sAsadero%20Alameda!5e0!3m2!1ses-419!2ses!4v1778762842963!5m2!1ses-419!2ses" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0, filter: 'grayscale(1) contrast(1.1) invert(0.9) hue-rotate(180deg)' }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="opacity-70 hover:opacity-100 transition-opacity duration-700 pointer-events-auto"
+            ></iframe>
           </div>
         </div>
       </section>
