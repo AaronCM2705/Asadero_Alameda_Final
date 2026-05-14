@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ShoppingBag, Menu as MenuIcon, X, User as UserIcon, LogOut, ShieldCheck } from 'lucide-react';
 import { useCart } from '../../hooks/useCart';
 import { useAuth } from '../../context/AuthContext';
@@ -12,12 +12,29 @@ export const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   
   const { cartCount } = useCart();
   const { user, isAdmin, signOut } = useAuth();
   const location = useLocation();
 
   const isHome = location.pathname === '/';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Verificar estado inicial al cargar
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleSignOut = async (e?: React.MouseEvent) => {
     if (e) {
@@ -31,9 +48,13 @@ export const Navbar = () => {
     await signOut();
   };
 
+  const navBackgroundClass = (isHome && !isScrolled) 
+    ? 'bg-transparent py-2' 
+    : 'bg-[#0A0A0A]/95 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)] py-0';
+
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isHome ? 'bg-transparent' : 'bg-background/80 backdrop-blur-md border-b border-white/5'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${navBackgroundClass}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-10 h-20 md:h-24 flex items-center justify-between">
           
           {/* Logo */}
