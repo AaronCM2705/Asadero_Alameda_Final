@@ -144,11 +144,11 @@ export const ProductManager = () => {
       {/* Grid de Productos */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {isLoading ? (
-          <div className="col-span-full text-center py-20 animate-pulse text-[10px] uppercase tracking-widest opacity-30">Escaneando la carta...</div>
+          <div className="col-span-full text-center py-20 animate-pulse text-[10px] uppercase tracking-widest text-on-surface/70">Escaneando la carta...</div>
         ) : products.length === 0 ? (
-          <div className="col-span-full border-2 border-dashed border-white/5 rounded-3xl py-20 text-center">
-            <Package className="mx-auto text-on-surface/10 mb-4" size={48} />
-            <p className="text-[10px] uppercase tracking-widest text-on-surface/30">No hay productos. ¡Empieza a cocinar!</p>
+          <div className="col-span-full border-2 border-dashed border-white/15 rounded-3xl py-20 text-center">
+            <Package className="mx-auto text-on-surface/40 mb-4" size={48} />
+            <p className="text-[10px] uppercase tracking-widest text-on-surface/80">No hay productos. ¡Empieza a cocinar!</p>
           </div>
         ) : (
           products.map(product => (

@@ -97,13 +97,13 @@ export const FinanceDashboard = () => {
     <div className="space-y-8 animate-fade-in-scale">
       {/* Botones de Acción */}
       <div className="flex flex-wrap gap-4">
-        <button onClick={exportToPDF} className="flex items-center gap-2 bg-red-500/30 text-red-500 border border-red-500/40 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all">
+        <button onClick={exportToPDF} className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg shadow-red-900/20">
           <FileText size={14} /> Descargar PDF
         </button>
-        <button onClick={exportToExcel} className="flex items-center gap-2 bg-green-500/30 text-green-500 border border-green-500/40 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-green-500 hover:text-white transition-all">
+        <button onClick={exportToExcel} className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-green-700 transition-all shadow-lg shadow-green-900/20">
           <FileSpreadsheet size={14} /> Exportar Excel
         </button>
-        <button onClick={exportToImage} className="flex items-center gap-2 bg-primary/30 text-primary border border-primary/40 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-black transition-all">
+        <button onClick={exportToImage} className="flex items-center gap-2 bg-primary text-black px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-primary/20">
           <ImageIcon size={14} /> Captura PNG
         </button>
       </div>
