@@ -22,16 +22,16 @@ export const ClientHome = () => {
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8 animate-fade-in-up-smooth">
             <Flame size={16} className="text-primary animate-pulse" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Artesanos de la Brasa</span>
           </div>
           
-          <h2 className="text-[40px] md:text-[80px] font-headline font-black leading-none uppercase italic mb-6 animate-fade-in-up">
+          <h2 className="text-[40px] md:text-[80px] font-headline font-black leading-none uppercase italic mb-6 animate-fade-in-up-smooth delay-100">
             El <span className="gold-gradient-text">Fuego</span> que <br/> Alimenta el Alma
           </h2>
           
-          <p className="text-sm md:text-lg text-on-surface/60 font-body uppercase tracking-[0.3em] mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-lg text-on-surface/60 font-body uppercase tracking-[0.3em] mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up-smooth delay-200">
             Descubra la sinfonía de sabores de nuestro asado tradicional, <br className="hidden md:block"/> 
             preparado con pasión y servido con elegancia.
           </p>
@@ -39,9 +39,9 @@ export const ClientHome = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link 
               to="/menu"
-              className="px-10 py-5 bg-primary text-black font-black uppercase tracking-[0.3em] text-xs flex items-center gap-3 hover:bg-yellow-400 transition-all hover:scale-105 shadow-2xl shadow-primary/20"
+              className="px-10 py-5 bg-primary text-black font-black uppercase tracking-[0.3em] text-xs flex items-center gap-3 hover:bg-[#F3D576] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] animate-fade-in-up-smooth delay-300 group"
             >
-              Ver La Carta <ChevronRight size={16} />
+              Ver La Carta <ChevronRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
             </Link>
             
           </div>
@@ -50,15 +50,15 @@ export const ClientHome = () => {
 
       {/* Sección Informativa Rápida */}
       <section className="py-24 px-6 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
-        <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10">
+        <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-100">
           <h4 className="font-headline italic text-xl text-primary">Producto Local</h4>
           <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/50">Seleccionamos las mejores piezas de la región para garantizar frescura absoluta.</p>
         </div>
-        <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10">
+        <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-300">
           <h4 className="font-headline italic text-xl text-primary">Leña de Encina</h4>
           <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/50">El aroma inconfundible de nuestra leña seleccionada impregna cada fibra.</p>
         </div>
-        <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10">
+        <div className="glass-panel p-10 text-center space-y-4 rounded-xl border-primary/10 hover:border-primary/40 transition-colors duration-500 hover:-translate-y-2 animate-slide-in-right delay-500">
           <h4 className="font-headline italic text-xl text-primary">Receta Secreta</h4>
           <p className="text-xs uppercase tracking-widest leading-loose text-on-surface/50">Un adobo transmitido de padres a hijos para un sabor inigualable.</p>
         </div>
