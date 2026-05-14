@@ -50,7 +50,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
         {/* Decoración de fondo */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 blur-[60px] rounded-full pointer-events-none"></div>
 
-        <button onClick={onClose} aria-label="Cerrar ventana" className="absolute top-4 right-4 p-2 text-on-surface/60 hover:text-primary transition-colors">
+        <button onClick={onClose} aria-label="Cerrar ventana" className="absolute top-4 right-4 p-2 text-on-surface/80 hover:text-primary transition-colors">
           <X size={24} />
         </button>
 
@@ -58,7 +58,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
           <h2 className="text-2xl font-headline italic gold-gradient-text uppercase">
             {isLogin ? 'Bienvenido de Nuevo' : 'Únete a la Familia'}
           </h2>
-          <p className="text-[10px] text-on-surface/40 uppercase tracking-[0.2em] mt-2">
+          <p className="text-[10px] text-on-surface/80 uppercase tracking-[0.2em] mt-2">
             {isLogin ? 'Accede a tus pedidos y perfil' : 'Regístrate para mejores beneficios'}
           </p>
         </div>
@@ -104,7 +104,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
               type="button"
               aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-on-surface/60 hover:text-primary transition-colors"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-on-surface/80 hover:text-primary transition-colors"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
@@ -130,7 +130,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
         <div className="mt-8 text-center">
           <button
             onClick={() => setIsLogin(!isLogin)}
-            className="text-[10px] text-on-surface/40 uppercase tracking-widest hover:text-primary transition-colors"
+            className="text-[10px] text-on-surface/80 uppercase tracking-widest hover:text-primary transition-colors"
           >
             {isLogin ? '¿No tienes cuenta? Regístrate gratis' : '¿Ya eres miembro? Inicia sesión'}
           </button>
