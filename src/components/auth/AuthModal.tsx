@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Mail, Lock, User, ArrowRight, X, AlertCircle, Eye, EyeOff, MapPin } from 'lucide-react';
+import { Mail, Lock, User, ArrowRight, X, AlertCircle, Eye, EyeOff } from 'lucide-react';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -12,7 +12,6 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -32,12 +31,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { 
-            data: { 
-              full_name: name,
-              address: address 
-            } 
-          }
+          options: { data: { full_name: name } }
         });
         if (error) throw error;
       }
@@ -78,18 +72,6 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 placeholder="Nombre Completo"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                required
-                className="w-full bg-surface/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-sm focus:border-primary/50 outline-none transition-colors text-on-surface"
-              />
-            </div>
-
-            <div className="relative">
-              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-primary" size={18} />
-              <input
-                type="text"
-                placeholder="Dirección de Entrega"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
                 required
                 className="w-full bg-surface/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-sm focus:border-primary/50 outline-none transition-colors text-on-surface"
               />

@@ -39,8 +39,8 @@ export const Footer = () => {
           </h4>
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-widest text-on-surface/60 font-bold leading-loose">
-              Calle Principal del Sabor, 123 <br/>
-              Alameda de la Victoria, 28001
+              Av. Alameda de la Victoria, 45 <br/>
+              Distrito Gourmet, Ciudad del Fuego
             </p>
             <a href="tel:+34672803909" className="flex items-center gap-2 text-primary font-black text-lg">
               <Phone size={18} />
