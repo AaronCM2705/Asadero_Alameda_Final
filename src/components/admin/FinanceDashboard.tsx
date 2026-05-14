@@ -97,13 +97,13 @@ export const FinanceDashboard = () => {
     <div className="space-y-8 animate-fade-in-scale">
       {/* Botones de Acción */}
       <div className="flex flex-wrap gap-4">
-        <button onClick={exportToPDF} className="flex items-center gap-2 bg-red-500/10 text-red-500 border border-red-500/20 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all">
+        <button onClick={exportToPDF} className="flex items-center gap-2 bg-red-500/20 text-red-500 border border-red-500/30 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all">
           <FileText size={14} /> Descargar PDF
         </button>
-        <button onClick={exportToExcel} className="flex items-center gap-2 bg-green-500/10 text-green-500 border border-green-500/20 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-green-500 hover:text-white transition-all">
+        <button onClick={exportToExcel} className="flex items-center gap-2 bg-green-500/20 text-green-500 border border-green-500/30 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-green-500 hover:text-white transition-all">
           <FileSpreadsheet size={14} /> Exportar Excel
         </button>
-        <button onClick={exportToImage} className="flex items-center gap-2 bg-primary/10 text-primary border border-primary/20 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-black transition-all">
+        <button onClick={exportToImage} className="flex items-center gap-2 bg-primary/20 text-primary border border-primary/30 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-black transition-all">
           <ImageIcon size={14} /> Captura PNG
         </button>
       </div>
@@ -115,8 +115,8 @@ export const FinanceDashboard = () => {
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
               <DollarSign size={48} className="text-primary" />
             </div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-primary/60 font-black mb-2">Ventas Totales</p>
-            <h4 className="text-4xl font-headline italic text-primary">{stats.totalSales.toFixed(2)}€</h4>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-black mb-2">Ventas Totales</p>
+            <h3 className="text-4xl font-headline italic text-primary">{stats.totalSales.toFixed(2)}€</h3>
             <div className="mt-4 flex items-center gap-2 text-green-400 text-[10px] font-black uppercase">
               <TrendingUp size={12} /> +12% vs ayer
             </div>
@@ -126,25 +126,25 @@ export const FinanceDashboard = () => {
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
               <ShoppingCart size={48} className="text-on-surface" />
             </div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-on-surface/40 font-black mb-2">Pedidos Realizados</p>
-            <h4 className="text-4xl font-headline italic text-on-surface">{stats.totalOrders}</h4>
-            <p className="mt-4 text-[10px] text-on-surface/20 uppercase font-black">Últimas 24 horas</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-on-surface/80 font-black mb-2">Pedidos Realizados</p>
+            <h3 className="text-4xl font-headline italic text-on-surface">{stats.totalOrders}</h3>
+            <p className="mt-4 text-[10px] text-on-surface/60 uppercase font-black">Últimas 24 horas</p>
           </div>
 
           <div className="glass-panel p-8 rounded-3xl border-white/5 relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
               <TrendingUp size={48} className="text-on-surface" />
             </div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-on-surface/40 font-black mb-2">Ticket Medio</p>
-            <h4 className="text-4xl font-headline italic text-on-surface">{stats.avgTicket.toFixed(2)}€</h4>
-            <p className="mt-4 text-[10px] text-on-surface/20 uppercase font-black">Eficiencia de venta</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-on-surface/80 font-black mb-2">Ticket Medio</p>
+            <h3 className="text-4xl font-headline italic text-on-surface">{stats.avgTicket.toFixed(2)}€</h3>
+            <p className="mt-4 text-[10px] text-on-surface/60 uppercase font-black">Eficiencia de venta</p>
           </div>
         </div>
 
         {/* Gráfica de Ganancias */}
         <div className="glass-panel p-8 rounded-3xl border-primary/5 h-[400px]">
           <div className="flex items-center justify-between mb-8">
-            <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/80">Evolución de Ingresos</h5>
+            <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Evolución de Ingresos</h5>
           </div>
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData}>
