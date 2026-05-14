@@ -178,6 +178,7 @@ export const Menu = () => {
             ))}
           </div>
         )}
+      </div>
       </main>
 
       <Footer />
