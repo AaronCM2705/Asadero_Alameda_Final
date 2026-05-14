@@ -39,15 +39,15 @@ export const AboutUs = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="glass-panel p-6 rounded-2xl border-primary/10">
+            <div className="glass-panel bg-[#1E1E1E] p-6 rounded-2xl border-primary/10">
               <Users className="text-primary mb-4" size={24} />
-              <h4 className="font-headline italic text-lg mb-2">Comunidad</h4>
-              <p className="text-[10px] uppercase tracking-widest text-on-surface/40">Crecemos junto a nuestros vecinos, ofreciendo siempre lo mejor.</p>
+              <h3 className="font-headline italic text-lg mb-2">Comunidad</h3>
+              <p className="text-[10px] uppercase tracking-widest text-white/90">Crecemos junto a nuestros vecinos, ofreciendo siempre lo mejor.</p>
             </div>
-            <div className="glass-panel p-6 rounded-2xl border-primary/10">
+            <div className="glass-panel bg-[#1E1E1E] p-6 rounded-2xl border-primary/10">
               <Award className="text-primary mb-4" size={24} />
-              <h4 className="font-headline italic text-lg mb-2">Calidad</h4>
-              <p className="text-[10px] uppercase tracking-widest text-on-surface/40">Solo trabajamos con proveedores locales certificados.</p>
+              <h3 className="font-headline italic text-lg mb-2">Calidad</h3>
+              <p className="text-[10px] uppercase tracking-widest text-white/90">Solo trabajamos con proveedores locales certificados.</p>
             </div>
           </div>
         </div>
@@ -111,6 +111,7 @@ export const AboutUs = () => {
 
           <div className="lg:col-span-2 h-[500px] rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative">
             <iframe 
+              title="Mapa de ubicación Asadero Alameda"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.8772974002754!2d-1.9481632885549938!3d37.392733971967715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd652ef43ceaaaeb%3A0xe2eda39ce1d098bd!2sAsadero%20Alameda!5e0!3m2!1ses-419!2ses!4v1778762842963!5m2!1ses-419!2ses" 
               width="100%" 
               height="100%" 
