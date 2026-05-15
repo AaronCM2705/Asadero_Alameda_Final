@@ -1,8 +1,6 @@
 import type { Order } from '../types';
 
-// @ts-expect-error - Compatibilidad Vite/Node
 const BOT_TOKEN = import.meta.env?.VITE_TELEGRAM_BOT_TOKEN || (globalThis as unknown as { process: { env: Record<string, string | undefined> } }).process?.env?.VITE_TELEGRAM_BOT_TOKEN;
-// @ts-expect-error - Compatibilidad Vite/Node
 const CHAT_ID = import.meta.env?.VITE_TELEGRAM_CHAT_ID || (globalThis as unknown as { process: { env: Record<string, string | undefined> } }).process?.env?.VITE_TELEGRAM_CHAT_ID;
 
 export const sendOrderNotification = async (order: Order) => {

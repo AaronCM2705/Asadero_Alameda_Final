@@ -44,7 +44,6 @@ interface WebhookResponse {
   end: () => void;
 }
 
-// @ts-expect-error - Compatibilidad Vite/Node
 const TELEGRAM_TOKEN = (globalThis as unknown as { process: { env: Record<string, string | undefined> } }).process?.env?.VITE_TELEGRAM_BOT_TOKEN || import.meta.env?.VITE_TELEGRAM_BOT_TOKEN;
 
 export default async function handler(req: WebhookRequest, res: WebhookResponse) {
