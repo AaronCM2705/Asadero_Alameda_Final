@@ -1,9 +1,9 @@
 import type { Order } from '../types';
 
-// @ts-ignore - Compatibilidad entre Vite y Vercel (Node.js)
-const BOT_TOKEN = import.meta.env?.VITE_TELEGRAM_BOT_TOKEN || (globalThis as typeof globalThis & { process: any }).process?.env?.VITE_TELEGRAM_BOT_TOKEN;
-// @ts-ignore
-const CHAT_ID = import.meta.env?.VITE_TELEGRAM_CHAT_ID || (globalThis as typeof globalThis & { process: any }).process?.env?.VITE_TELEGRAM_CHAT_ID;
+// @ts-expect-error - Compatibilidad Vite/Node
+const BOT_TOKEN = import.meta.env?.VITE_TELEGRAM_BOT_TOKEN || (globalThis as unknown as { process: { env: Record<string, string | undefined> } }).process?.env?.VITE_TELEGRAM_BOT_TOKEN;
+// @ts-expect-error - Compatibilidad Vite/Node
+const CHAT_ID = import.meta.env?.VITE_TELEGRAM_CHAT_ID || (globalThis as unknown as { process: { env: Record<string, string | undefined> } }).process?.env?.VITE_TELEGRAM_CHAT_ID;
 
 export const sendOrderNotification = async (order: Order) => {
   if (!BOT_TOKEN || !CHAT_ID) {
