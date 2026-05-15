@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ClientHome } from './pages/client/Home';
 import { Menu } from './pages/client/Menu';
 import { AboutUs } from './pages/client/AboutUs';
@@ -48,6 +49,7 @@ function App() {
             {/* Si escriben algo raro, los mandamos al inicio */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <SpeedInsights />
         </Router>
       </CartProvider>
     </AuthProvider>
