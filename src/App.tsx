@@ -9,6 +9,7 @@ import { useAdminAuth } from './hooks/useAdminAuth';
 import { AnnouncementPopup } from './components/client/AnnouncementPopup';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Componente para proteger las rutas de la jefa
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
@@ -24,6 +25,7 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
+        <SpeedInsights />
         <Router>
           <AnnouncementPopup />
           <Routes>
