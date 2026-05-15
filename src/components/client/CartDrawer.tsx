@@ -31,13 +31,14 @@ export const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
       status: 'pending'
     };
 
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('orders')
-      .insert([orderData]);
+      .insert([orderData])
+      .select();
 
-    if (!error) {
-      // Disparamos la notificación a Telegram en segundo plano
-      sendOrderNotification(orderData as Order).catch(console.error);
+    if (!error && data?.[0]) {
+      // Disparamos la notificación a Telegram con el ID real del pedido
+      sendOrderNotification(data[0] as Order).catch(console.error);
       
       setIsSuccess(true);
       clearCart();

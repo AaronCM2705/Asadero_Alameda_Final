@@ -37,7 +37,13 @@ ${itemsList}
       body: JSON.stringify({
         chat_id: CHAT_ID,
         text: message,
-        parse_mode: 'Markdown'
+        parse_mode: 'Markdown',
+        reply_markup: {
+          inline_keyboard: [[
+            { text: "👨‍🍳 Aceptar", callback_data: `aceptar:${order.id}` },
+            { text: "❌ Cancelar", callback_data: `cancelar:${order.id}` }
+          ]]
+        }
       })
     });
 
