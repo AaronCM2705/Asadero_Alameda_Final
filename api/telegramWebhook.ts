@@ -44,7 +44,8 @@ interface WebhookResponse {
   end: () => void;
 }
 
-const TELEGRAM_TOKEN = (globalThis as any).process?.env?.VITE_TELEGRAM_BOT_TOKEN || import.meta.env?.VITE_TELEGRAM_BOT_TOKEN;
+// @ts-ignore
+const TELEGRAM_TOKEN = (globalThis as typeof globalThis & { process: any }).process?.env?.VITE_TELEGRAM_BOT_TOKEN || import.meta.env?.VITE_TELEGRAM_BOT_TOKEN;
 
 export default async function handler(req: WebhookRequest, res: WebhookResponse) {
   if (req.method !== 'POST') {
