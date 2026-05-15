@@ -1,7 +1,7 @@
 import type { Order } from '../types';
 
-const BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-const CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+const BOT_TOKEN = import.meta.env?.VITE_TELEGRAM_BOT_TOKEN || process.env.VITE_TELEGRAM_BOT_TOKEN;
+const CHAT_ID = import.meta.env?.VITE_TELEGRAM_CHAT_ID || process.env.VITE_TELEGRAM_CHAT_ID;
 
 export const sendOrderNotification = async (order: Order) => {
   if (!BOT_TOKEN || !CHAT_ID) {
