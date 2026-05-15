@@ -10,6 +10,7 @@ import { AnnouncementPopup } from './components/client/AnnouncementPopup';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 // Componente para proteger las rutas de la jefa
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
@@ -26,6 +27,7 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <SpeedInsights />
+        <Analytics />
         <Router>
           <AnnouncementPopup />
           <Routes>
